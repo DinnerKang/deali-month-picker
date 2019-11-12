@@ -1,28 +1,107 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div class="month_picker_container">
+          <div class="year_select_area">
+            <img :src="arrowIcon" class="right_arrow arrow" @click="nowYear--" />
+            <div class="now_year">{{nowYear}}</div>
+            <img :src="arrowIcon" class="arrow" @click="nowYear++" />
+          </div>
+          <div class="month_select_area">
+            <ul class="month_list_area">
+              <li v-for="list in month" class="month_list" @click="clickMonth(list)"
+                  :key="list" :class="{ active_month: list===activeMonth}">
+                  {{list}}
+              </li>
+            </ul>
+          </div>
+      </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      nowYear : new Date().getFullYear(),
+      arrowIcon: require('./assets/ic-arrow-left-gray-50-24-n.svg'),
+      month: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      activeMonth: '',
+    }
+  },
+  methods:{
+    clickMonth(list){
+      if(this.activeMonth === list) return;
+      this.activeMonth = list;
+      const month = list.split('월');
+      const day = this.nowYear+ '-' + month[0];
+      const data = new Date(day);
+
+      this.$emit('click', data);
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .month_picker_container{
+    width: 308px;
+    height: 184px;
+    border-radius: 4px;
+    border: solid 2px #efefef;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 24px;
+  }
+  .year_select_area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 0 16px 0;
+  }
+  .now_year{
+    font-weight: bold;
+    margin:0 90px;
+  }
+  .arrow{
+    cursor: pointer;
+  }
+  .right_arrow{
+    transform: rotate(180deg);
+  }
+  .month_list_area{
+    height: 100%;
+  }
+  .month_list{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; 
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size:14px;
+    color: #222;
+  }
+  .month_list:hover{
+    background-color: #f6f6f6;
+  }
+  .active_month{
+    color: #fff;
+    background-color: #ff7f7a;
+  }
+  .active_month:hover{
+    background-color: #ff7f7a;
+  }
 </style>
