@@ -44,7 +44,6 @@ export default {
 
       if(this.activeMonth){
         const data = this.checkDate(this.activeMonth);
-        console.log('year click', data);
         this.$emit('click', data);
       }
     },
@@ -52,8 +51,6 @@ export default {
       if(this.activeMonth === list) return;
       this.activeMonth = list;
       const data = this.checkDate(list);
-
-      console.log('month click', data);
       this.$emit('click', data);
     },
 
