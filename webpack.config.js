@@ -8,7 +8,7 @@ var commonConfig = {
     path: path.resolve(__dirname + '/dist/'),
   },
   module: {
-    loaders: [{
+    rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
         include: __dirname,

@@ -7,20 +7,21 @@
     "picker",
     "dealicious"
   ],
-  "main": "dist/index.html",
+  "main": "dist/deali-month-picker.js",
   "author": "DinnerKang <jenhyuk0318@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/DinnerKang/deali-month-picker"
   },
-  "version": "0.1.0",
+  "version": "0.1.3",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "rimraf ./dist && webpack --config ./webpack.config.js --mode production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "url-loader": "^2.2.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -30,6 +31,11 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-loader": "^14.2.4",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
   }
 }
