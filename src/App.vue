@@ -2,14 +2,14 @@
   <div id="app">
       <div class="month_picker_container">
           <div class="year_select_area">
-            <img :src="arrowIcon" class="right_arrow arrow" @click="nowYear--" />
+            <img :src="arrowIcon" class="right_arrow arrow" @click="clickYear(0)" />
             <div class="now_year">{{nowYear}}</div>
-            <img :src="arrowIcon" class="arrow" @click="nowYear++" />
+            <img :src="arrowIcon" class="arrow" @click="clickYear(1)" />
           </div>
           <div class="month_select_area">
             <ul class="month_list_area">
               <li v-for="list in month" class="month_list" @click="clickMonth(list)"
-                  :key="list" :class="{ active_month: list===activeMonth}">
+                  :key="list" :class="{ active_month: list===activeMonth, disable_month: checkDisAble(list)}">
                   {{list}}
               </li>
             </ul>
@@ -21,6 +21,14 @@
 <script>
 export default {
   name: 'app',
+  props:{
+    minDate:{
+      type: String,
+    },
+    maxDate: {
+      type: String,
+    }
+  },
   data(){
     return{
       nowYear : new Date().getFullYear(),
@@ -30,14 +38,40 @@ export default {
     }
   },
   methods:{
+    clickYear(status){
+      if(status===0) this.nowYear--;
+      if(status===1) this.nowYear++;
+
+      if(this.activeMonth){
+        const data = this.checkDate(this.activeMonth);
+        console.log('year click', data);
+        this.$emit('click', data);
+      }
+    },
     clickMonth(list){
       if(this.activeMonth === list) return;
       this.activeMonth = list;
+      const data = this.checkDate(list);
+
+      console.log('month click', data);
+      this.$emit('click', data);
+    },
+
+    checkDate(list){
       const month = list.split('월');
       const day = this.nowYear+ '-' + month[0];
-      const data = new Date(day);
-
-      this.$emit('click', data);
+      const DATE = new Date(day);
+      return DATE;
+    },
+    checkDisAble(list){
+      const data = this.checkDate(list);
+      const now = new Date(data);
+      if(now > this.maxDate){
+        return true;
+      }
+      if( now < this.minDate){
+        return true;
+      }
     }
   }
 }
@@ -103,5 +137,10 @@ export default {
   }
   .active_month:hover{
     background-color: #ff7f7a;
+  }
+  .disable_month{
+    cursor:not-allowed;
+    color: #fff;
+    background-color: #f6f6f6;
   }
 </style>
