@@ -3,7 +3,6 @@
 ### dealicious 를 위한 컴포넌트
 > Supports Vue 2.x <br>
 > Test Version is 0.1.x
-[https://github.com/DinnerKang/deali-month-picker](https://github.com/DinnerKang/deali-month-picker)
 
 ##Usage
 ```bash
