@@ -23,10 +23,11 @@ export default {
   name: 'deali-month-picker',
   props:{
     minDate: {
-      type: Object
+      type: Date
     },
     maxDate: {
-      type: Object
+      type: Date,
+      default: new Date(),
     }
   },
   data(){
