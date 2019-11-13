@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
+  <div id="deali-month-picker">
       <div class="month_picker_container">
           <div class="year_select_area">
-            <img :src="arrowIcon" class="right_arrow arrow" @click="clickYear(0)" />
+            <img :src="arrowIcon" class="right_arrow arrow" v-on:click="clickYear(0)" />
             <div class="now_year">{{nowYear}}</div>
-            <img :src="arrowIcon" class="arrow" @click="clickYear(1)" />
+            <img :src="arrowIcon" class="arrow" v-on:click="clickYear(1)" />
           </div>
           <div class="month_select_area">
             <ul class="month_list_area">
-              <li v-for="list in month" class="month_list" @click="clickMonth(list)"
+              <li v-for="list in month" class="month_list" v-on:click="clickMonth(list)"
                   :key="list" :class="{ active_month: list===activeMonth, disable_month: checkDisAble(list)}">
                   {{list}}
               </li>
@@ -20,13 +20,13 @@
 
 <script>
 export default {
-  name: 'app',
+  name: 'deali-month-picker',
   props:{
     minDate:{
-      type: String,
+      type: Object,
     },
     maxDate: {
-      type: String,
+      type: Object,
     }
   },
   data(){
@@ -44,14 +44,15 @@ export default {
 
       if(this.activeMonth){
         const data = this.checkDate(this.activeMonth);
-        this.$emit('click', data);
+        this.$emit('clickDate', data);
       }
     },
     clickMonth(list){
       if(this.activeMonth === list) return;
+      if(this.checkDisAble(list)) return;
       this.activeMonth = list;
       const data = this.checkDate(list);
-      this.$emit('click', data);
+      this.$emit('clickDate', data);
     },
 
     checkDate(list){
