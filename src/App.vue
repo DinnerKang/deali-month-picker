@@ -22,12 +22,8 @@
 export default {
   name: 'deali-month-picker',
   props:{
-    minDate:{
-      type: Object,
-    },
-    maxDate: {
-      type: Object,
-    }
+    minDate: '',
+    maxDate: ''
   },
   data(){
     return{
@@ -138,7 +134,7 @@ export default {
   }
   .disable_month{
     cursor:not-allowed;
-    color: #fff;
-    background-color: #f6f6f6;
+    color: #f6f6f6;
+    background-color: #fff;
   }
 </style>
