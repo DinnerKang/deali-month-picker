@@ -43,10 +43,7 @@ export default {
       if(status===0) this.nowYear--;
       if(status===1) this.nowYear++;
 
-      if(this.activeMonth){
-        const data = this.checkDate(this.activeMonth);
-        this.$emit('clickDate', data);
-      }
+      this.activeMonth = '';
     },
     clickMonth(list){
       if(this.activeMonth === list) return;
