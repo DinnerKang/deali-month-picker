@@ -4,6 +4,12 @@
 > Supports Vue 2.x <br>
 > Test Version is 0.1.x
 
+### Imgs
+#### Hover
+<img src="./assets/hover.png"><br>
+#### Click
+<img src="./assets/click.png">
+
 ##Usage
 ```bash
 props:{
