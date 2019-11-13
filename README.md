@@ -1,14 +1,21 @@
-# vue-month-picker
+# deali-month-picker
+
+dealicious 를 위한 컴포넌트
+
 
 ##Usage
 ```bash
 props:{
-    minDate:'',
-    maxDate:'',
+    minDate: {
+      type: Object
+    },
+    maxDate: {
+      type: Object
+    }
 }
 ```
 
-minDate, maxDate 값은 : Date 객체(new Date()) or '2019-11' 등등...
+### minDate, maxDate 값은 : Date 객체
 
 ```bash
 <template>

@@ -22,8 +22,12 @@
 export default {
   name: 'deali-month-picker',
   props:{
-    minDate: '',
-    maxDate: ''
+    minDate: {
+      type: Object
+    },
+    maxDate: {
+      type: Object
+    }
   },
   data(){
     return{
@@ -57,6 +61,7 @@ export default {
       const DATE = new Date(day);
       return DATE;
     },
+    // 사용 금지 체크
     checkDisAble(list){
       const data = this.checkDate(list);
       const now = new Date(data);
