@@ -41,7 +41,7 @@ props:{
         },
         data(){
           return{
-              minDate:  new Date('2019-01'),
+              minDate:  new Date('2019-1'),
               nowDate : new Date(),
           }
         },

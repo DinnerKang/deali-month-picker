@@ -40,8 +40,8 @@ export default {
   },
   methods:{
     clickYear(status){
-      if(status===0) this.nowYear--;
-      if(status===1) this.nowYear++;
+      if(status===0 && this.minDate.getFullYear() < this.nowYear) this.nowYear--;
+      if(status===1 && this.maxDate.getFullYear() > this.nowYear) this.nowYear++;
 
       this.activeMonth = '';
     },
