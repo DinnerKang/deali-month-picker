@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/DinnerKang/deali-month-picker"
   },
-  "version": "0.2.9",
+  "version": "0.2.10",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "rimraf ./dist && webpack --config ./webpack.config.js --mode production",
@@ -32,6 +32,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "serialize-javascript": "^2.1.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-loader": "^14.2.4",
     "vue-template-compiler": "^2.6.10",
