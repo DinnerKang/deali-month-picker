@@ -34,7 +34,7 @@ export default {
       default: new Date(),
     },
     checkedDate: {
-      type: Date,
+      type: [Date, String],
       default: '',
     },
   },
@@ -61,8 +61,10 @@ export default {
       this.$emit('clickDate', data);
     },
     checkActiveMonth(list) {
-      const data = this.checkDate(list).getFullYear + this.checkDate(list).getMonth;
-      const checked = this.checkDate.getFullYear + this.checkedDate.getMonth;
+      if (this.checkedDate === '') return false;
+
+      const date = String(this.checkDate(list).getFullYear()) + String(this.checkDate(list).getMonth());
+      const checked = String(this.checkedDate.getFullYear()) + String(this.checkedDate.getMonth());
 
       if (date === checked) {
         return true;
