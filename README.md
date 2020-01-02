@@ -18,7 +18,10 @@ props:{
     },
     maxDate: {
       type: Date
-    }
+    },
+    checkedDate: {
+      type: Date,
+    },
 }
 ```
 
@@ -27,7 +30,12 @@ props:{
 ```bash
 <template>
     <div>
-         <deali-month :minDate="minDate" :maxDate="maxDate" @clickDate="getDate"></deali-month>
+        <deali-month 
+            :minDate="minDate"
+            :maxDate="nowDate"
+            :checkedDate="checkedDate"
+            @clickDate="getDate">
+        </deali-month>
     </div>
 </template>
 
@@ -43,6 +51,7 @@ props:{
           return{
               minDate:  new Date('2019-1'),
               nowDate : new Date(),
+              checkedDate: new Date(),
           }
         },
         methods:{

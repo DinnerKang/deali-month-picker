@@ -9,7 +9,11 @@
           <div class="month_select_area">
             <ul class="month_list_area">
               <li v-for="list in month" class="month_list" v-on:click="clickMonth(list)"
-                  :key="list" :class="{ active_month: list===activeMonth, disable_month: checkDisAble(list)}">
+                  :key="list" 
+                  :class="{ 
+                    active_month: checkActiveMonth(list),
+                    disable_month: checkDisAble(list),
+                    }">
                   {{list}}
               </li>
             </ul>
@@ -28,7 +32,11 @@ export default {
     maxDate: {
       type: Date,
       default: new Date(),
-    }
+    },
+    checkedDate: {
+      type: Date,
+      default: '',
+    },
   },
   data(){
     return{
@@ -52,7 +60,15 @@ export default {
       const data = this.checkDate(list);
       this.$emit('clickDate', data);
     },
+    checkActiveMonth(list) {
+      const data = this.checkDate(list).getFullYear + this.checkDate(list).getMonth;
+      const checked = this.checkDate.getFullYear + this.checkedDate.getMonth;
 
+      if (date === checked) {
+        return true;
+      } 
+      return false;
+    },
     checkDate(list){
       const month = list.split('월');
       const day = this.nowYear+ '-' + month[0];
