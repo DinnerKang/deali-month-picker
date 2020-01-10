@@ -14,7 +14,7 @@
                     active_month: checkActiveMonth(list),
                     disable_month: checkDisAble(list),
                     }">
-                  {{list}}
+                  <span>{{list}}</span>
               </li>
             </ul>
           </div>
@@ -73,6 +73,9 @@ export default {
     },
     checkDate(list){
       const month = list.split('월');
+      if (Number(month[0]) < 10){
+        month[0] = 0 + month[0];
+      }
       const day = this.nowYear+ '-' + month[0];
       const DATE = new Date(day);
       return DATE;
@@ -126,19 +129,20 @@ export default {
   }
   .month_list_area{
     height: 100%;
+    display: grid;
+    grid-template-rows: repeat(2, 40px);
+    gap: 16px 0;
+    grid-template-columns: repeat(6, 1fr);
   }
   .month_list{
     border-radius: 50%;
     width: 40px;
-    height: 40px; 
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
+    height: 40px;     
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     background-color: #fff;
-    margin-bottom: 16px;
     text-align: center;
     font-size:14px;
     color: #222;
