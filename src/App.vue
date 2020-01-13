@@ -129,17 +129,15 @@ export default {
   }
   .month_list_area{
     height: 100%;
-    display: grid;
-    grid-template-rows: repeat(2, 40px);
-    -ms-grid-rows: 40px 40px;   
-    gap: 16px 0;
-    grid-template-columns: repeat(6, 1fr);
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;  
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .month_list{
     border-radius: 50%;
     width: 40px;
-    height: 40px;     
+    height: 40px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
