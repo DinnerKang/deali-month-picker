@@ -131,8 +131,10 @@ export default {
     height: 100%;
     display: grid;
     grid-template-rows: repeat(2, 40px);
+    -ms-grid-rows: 40px 40px;   
     gap: 16px 0;
     grid-template-columns: repeat(6, 1fr);
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;  
   }
   .month_list{
     border-radius: 50%;

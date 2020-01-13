@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/DinnerKang/deali-month-picker"
   },
-  "version": "0.3.4",
+  "version": "0.3.5",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "rimraf ./dist && webpack --config ./webpack.config.js --mode production",
