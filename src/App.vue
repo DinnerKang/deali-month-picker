@@ -34,13 +34,13 @@ export default {
       default: () =>  new Date(),
     },
     checkedDate: {
-      type: [Date, String],
-      default: '',
+      type: Date,
+      default: () => new Date(),
     },
   },
   data(){
     return{
-      nowYear : this.checkedDate instanceof Date ? this.checkedDate.getFullYear() : new Date().getFullYear(),
+      nowYear : this.checkedDate.getFullYear(),
       arrowIcon: require('./assets/ic-arrow-left-gray-50-24-n.svg'),
       month: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
       activeMonth: this.checkedDate,
@@ -64,8 +64,6 @@ export default {
       this.$emit('clickDate', data);
     },
     checkActiveMonth(list) {
-      if (this.checkedDate instanceof Date === false) return false;
-
       const date = String(this.checkDate(list).getFullYear()) + String(this.checkDate(list).getMonth());
       const checked = String(this.checkedDate.getFullYear()) + String(this.checkedDate.getMonth());
 
