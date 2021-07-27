@@ -28,7 +28,6 @@ export default {
   props:{
     minDate: {
       type: Date,
-      default: () =>  new Date('2020-01-01'),
     },
     maxDate: {
       type: Date,
@@ -41,7 +40,7 @@ export default {
   },
   data(){
     return{
-      nowYear : this.checkedDate ? this.checkedDate.getFullYear() : new Date().getFullYear(),
+      nowYear : this.checkedDate instanceof Date ? this.checkedDate.getFullYear() : new Date().getFullYear(),
       arrowIcon: require('./assets/ic-arrow-left-gray-50-24-n.svg'),
       month: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
       activeMonth: this.checkedDate,
@@ -62,7 +61,7 @@ export default {
       this.$emit('clickDate', data);
     },
     checkActiveMonth(list) {
-      if (this.checkedDate === '') return false;
+      if (this.checkedDate instanceof Date === false) return false;
 
       const date = String(this.checkDate(list).getFullYear()) + String(this.checkDate(list).getMonth());
       const checked = String(this.checkedDate.getFullYear()) + String(this.checkedDate.getMonth());
