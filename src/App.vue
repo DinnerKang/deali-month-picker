@@ -9,8 +9,8 @@
           <div class="month_select_area">
             <ul class="month_list_area">
               <li v-for="list in month" class="month_list" v-on:click="clickMonth(list)"
-                  :key="list" 
-                  :class="{ 
+                  :key="list"
+                  :class="{
                     active_month: checkActiveMonth(list),
                     disable_month: checkDisAble(list),
                     }">
@@ -27,11 +27,12 @@ export default {
   name: 'deali-month-picker',
   props:{
     minDate: {
-      type: Date
+      type: Date,
+      default: () =>  new Date('2020-01-01'),
     },
     maxDate: {
       type: Date,
-      default: new Date(),
+      default: () =>  new Date(),
     },
     checkedDate: {
       type: [Date, String],
@@ -40,10 +41,10 @@ export default {
   },
   data(){
     return{
-      nowYear : new Date().getFullYear(),
+      nowYear : this.checkedDate ? this.checkedDate.getFullYear() : new Date().getFullYear(),
       arrowIcon: require('./assets/ic-arrow-left-gray-50-24-n.svg'),
       month: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-      activeMonth: '',
+      activeMonth: this.checkedDate,
     }
   },
   methods:{
@@ -68,7 +69,7 @@ export default {
 
       if (date === checked) {
         return true;
-      } 
+      }
       return false;
     },
     checkDate(list){
@@ -152,10 +153,10 @@ export default {
   }
   .active_month{
     color: #fff;
-    background-color: #ff7f7a;
+    background-color: #fb4760;
   }
   .active_month:hover{
-    background-color: #ff7f7a;
+    background-color: #c8384c;
   }
   .disable_month{
     cursor:not-allowed;
