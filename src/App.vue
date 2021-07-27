@@ -40,11 +40,14 @@ export default {
   },
   data(){
     return{
-      nowYear : typeof this.checkedDate.getMonth === 'function' ? this.checkedDate.getFullYear() : new Date().getFullYear(),
+      nowYear : this.checkedDate instanceof Date ? this.checkedDate.getFullYear() : new Date().getFullYear(),
       arrowIcon: require('./assets/ic-arrow-left-gray-50-24-n.svg'),
       month: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
       activeMonth: this.checkedDate,
     }
+  },
+  created() {
+    if (isNaN(this.nowYear)) this.nowYear = new Date().getFullYear();
   },
   methods:{
     clickYear(status){
